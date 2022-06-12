@@ -9,6 +9,7 @@ public class Locker {
 
     Double lockerPrice;
 
+
     public Double getLockerPrice() {
         return lockerPrice;
     }

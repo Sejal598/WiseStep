@@ -3,6 +3,7 @@ package com.example.demo.service;
 
 import com.example.demo.dao.LockerDao;
 import com.example.demo.model.Locker;
+import com.example.demo.model.StoreDetails;
 import com.example.demo.utils.CommonConstants;
 import org.codehaus.plexus.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +97,22 @@ public class LockerService {
             throw new Exception("Incorrect PassCode");
         }
 
+    }
+
+    public void storeBelonging(List<StoreDetails> storeDetails) throws Exception {
+        Locker lockerDetails = lockerDao.getLockerDetailsByCode(storeDetails.get(0).getLockerId());
+        Locker locker = new Locker();
+        locker.setLockerCode(storeDetails.get(0).getLockerId());
+        if (validatePass(locker, lockerDetails)) {
+            lockerDao.storeBelongings(storeDetails);
+        } else {
+            throw new Exception("Incorrect PassCode");
+        }
+
+    }
+
+    public void storeDetails(List<StoreDetails> storeDetailsList) {
+          lockerDao.storeBelongings(storeDetailsList);
     }
 
 

@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.model.Locker;
+import com.example.demo.model.StoreDetails;
 import com.example.demo.service.LockerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,5 +35,10 @@ public class LockerController {
         lockerService.checkout(locker);
     }
 
-
+    @PostMapping("/store-belongings")
+    public void storeBelongings(@RequestBody List<StoreDetails> storeDetailsList) throws Exception {
+        lockerService.storeBelonging(storeDetailsList);
+    }
 }
+
+
